@@ -91,6 +91,41 @@ imagesc(img5_sys_carre); colormap('gray'); title('Image5 Systole Reduced');
 subplot(2,5,10);
 imagesc(img5_dias_carre); colormap('gray'); title('Image5 Diastole Reduced');
 
+%% Egalisation 
+
+% img1_sys_eg = adapthisteq(uint8(img1_sys_carre));
+% img2_sys_eg = adapthisteq(uint8(img2_sys_carre));
+% img3_sys_eg = adapthisteq(uint8(img3_sys_carre));
+% img4_sys_eg = adapthisteq(uint8(img4_sys_carre));
+% img5_sys_eg = adapthisteq(uint8(img5_sys_carre));
+% img1_dias_eg = adapthisteq(uint8(img1_dias_carre));
+% img2_dias_eg = adapthisteq(uint8(img2_dias_carre));
+% img3_dias_eg = adapthisteq(uint8(img3_dias_carre));
+% img4_dias_eg = adapthisteq(uint8(img4_dias_carre));
+% img5_dias_eg = adapthisteq(uint8(img5_dias_carre));
+% 
+% figure;
+% subplot(2,5,1);
+% imagesc(img1_sys_eg); colormap('gray'); title('Image1 Systole Egalised');
+% subplot(2,5,6);
+% imagesc(img1_dias_eg); colormap('gray'); title('Image1 Diastole Egalised');
+% subplot(2,5,2);
+% imagesc(img2_sys_eg); colormap('gray'); title('Image2 Systole Egalised');
+% subplot(2,5,7);
+% imagesc(img2_dias_eg); colormap('gray'); title('Image2 Diastole Egalised');
+% subplot(2,5,3);
+% imagesc(img3_sys_eg); colormap('gray'); title('Image3 Systole Egalised');
+% subplot(2,5,8);
+% imagesc(img3_dias_eg); colormap('gray'); title('Image3 Diastole Egalised');
+% subplot(2,5,4);
+% imagesc(img4_sys_eg); colormap('gray'); title('Image4 Systole Egalised');
+% subplot(2,5,9);
+% imagesc(img4_dias_eg); colormap('gray'); title('Image4 Diastole Egalised');
+% subplot(2,5,5);
+% imagesc(img5_sys_eg); colormap('gray'); title('Image5 Systole Egalised');
+% subplot(2,5,10);
+% imagesc(img5_dias_eg); colormap('gray'); title('Image5 Diastole Egalised');
+
 %% Transformation with S curve
 
 k  = 10;      
@@ -131,7 +166,7 @@ imagesc(img5_sys_S); colormap('gray');title('Image5 Systole S-curve');
 subplot(2,5,10);
 imagesc(img5_dias_S); colormap('gray');title('Image5 Diastole S-curve');
 
-%% Binarization
+%% 
 
 img1_sys_bin  = imbinarize(img1_sys_S);
 img2_sys_bin  = imbinarize(img2_sys_S);
@@ -143,26 +178,4 @@ img2_dias_bin = imbinarize(img2_dias_S);
 img3_dias_bin = imbinarize(img3_dias_S);
 img4_dias_bin = imbinarize(img4_dias_S);
 img5_dias_bin = imbinarize(img5_dias_S);
-
-figure;
-subplot(2,5,1);
-imagesc(img1_sys_bin); colormap('gray'); title('Image1 Systole Binarizad');
-subplot(2,5,6);
-imagesc(img1_dias_bin); colormap('gray');title('Image1 Diastole Binarizad');
-subplot(2,5,2);
-imagesc(img2_sys_bin); colormap('gray');title('Image2 Systole Binarizad');
-subplot(2,5,7);
-imagesc(img2_dias_bin); colormap('gray');title('Image2 Diastole Binarizad');
-subplot(2,5,3);
-imagesc(img3_sys_bin); colormap('gray');title('Image3 Systole Binarizad');
-subplot(2,5,8);
-imagesc(img3_dias_bin); colormap('gray');title('Image3 Diastole Binarizad');
-subplot(2,5,4);
-imagesc(img4_sys_bin); colormap('gray');title('Image4 Systole Binarizad');
-subplot(2,5,9);
-imagesc(img4_dias_bin); colormap('gray');title('Image4 Diastole Binarizad');
-subplot(2,5,5);
-imagesc(img5_sys_bin); colormap('gray');title('Image5 Systole Binarizad');
-subplot(2,5,10);
-imagesc(img5_dias_bin); colormap('gray');title('Image5 Diastole Binarizad');
 
