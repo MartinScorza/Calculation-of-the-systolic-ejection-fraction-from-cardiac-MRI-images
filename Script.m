@@ -57,6 +57,7 @@ imagesc(img5_dias); colormap('gray'); title('Image5 Diastole Original');
 %% Plot reduced images
 idx1 = 70;
 idx2 = 170;
+
 img1_sys_carre = img1_sys(idx1:idx2,idx1:idx2);
 img2_sys_carre = img2_sys(idx1:idx2,idx1:idx2);
 img3_sys_carre = img3_sys(idx1:idx2,idx1:idx2);
