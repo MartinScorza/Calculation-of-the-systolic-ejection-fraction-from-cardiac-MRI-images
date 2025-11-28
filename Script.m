@@ -166,3 +166,49 @@ imagesc(img5_sys_bin); colormap('gray');title('Image5 Systole Binarizad');
 subplot(2,5,10);
 imagesc(img5_dias_bin); colormap('gray');title('Image5 Diastole Binarizad');
 
+%% 
+
+
+label1_sys = bwlabel(img1_sys_bin);
+label2_sys = bwlabel(img2_sys_bin);
+label3_sys = bwlabel(img3_sys_bin);
+label4_sys = bwlabel(img4_sys_bin);
+label5_sys = bwlabel(img5_sys_bin);
+
+label1_dias = bwlabel(img1_dias_bin);
+label2_dias = bwlabel(img2_dias_bin);
+label3_dias = bwlabel(img3_dias_bin);
+label4_dias = bwlabel(img4_dias_bin);
+label5_dias = bwlabel(img5_dias_bin);
+
+figure;
+subplot(2,5,1);
+imagesc(label1_sys ==13); colormap('gray'); title('Regions Image1 Sys');
+% label1_sys ==13
+subplot(2,5,2);
+imagesc(label2_sys ==14); colormap('gray'); title('Regions Image2 Sys');
+% label2_sys ==14
+subplot(2,5,3);
+imagesc(label3_sys ==14); colormap('gray'); title('Regions Image3 Sys');
+% label3_sys ==14
+subplot(2,5,4);
+imagesc(label4_sys ==13); colormap('gray'); title('Regions Image4 Sys');
+% label4_sys ==13
+subplot(2,5,5);
+imagesc(label5_sys ==15); colormap('gray'); title('Regions Image5 Sys');
+% label5_sys ==15
+subplot(2,5,6);
+imagesc(label1_dias ==13);colormap('gray');title('Regions Image1 Dias');
+% label1_dias ==13
+subplot(2,5,7);
+imagesc(label2_dias ==18);colormap('gray');title('Regions Image2 Dias');
+% label1_dias ==18
+subplot(2,5,8);
+imagesc(label3_dias ==18);colormap('gray');title('Regions Image3 Dias');
+% label1_dias ==18
+subplot(2,5,9);
+imagesc(label4_dias ==18);colormap('gray');title('Regions Image4 Dias');
+% label1_dias ==18
+subplot(2,5,10);
+imagesc(label5_dias ==13);colormap('gray');title('Regions Image5 Dias');
+% label1_dias ==21
