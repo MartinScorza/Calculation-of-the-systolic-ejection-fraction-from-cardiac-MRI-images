@@ -8,7 +8,7 @@ clear
 clc
 
 addpath(genpath(pwd));
-
+  
 img1_sys = dicomread('IM-0009-0020.dcm');
 img1_dias = dicomread('IM-0009-0028.dcm');
 img2_sys = dicomread('IM-0009-0040.dcm');
@@ -145,31 +145,35 @@ img3_dias_bin = imbinarize(img3_dias_S);
 img4_dias_bin = imbinarize(img4_dias_S);
 img5_dias_bin = imbinarize(img5_dias_S);
 
-figure;
-subplot(2,5,1);
-imagesc(img1_sys_bin); colormap('gray'); title('Image1 Systole Binarized');
-subplot(2,5,6);
-imagesc(img1_dias_bin); colormap('gray');title('Image1 Diastole Binarized');
+se5 = strel('disk', 5);
+imerosiondiast1=imopen(img1_dias_bin, se5);
 
-subplot(2,5,2);
+figure;
+subplot(3,5,1);
+imagesc(img1_sys_bin); colormap('gray'); title('Image1 Systole Binarized');
+subplot(3,5,6);
+imagesc(img5_dias_bin); colormap('gray');title('Image1 Diastole Binarized');
+subplot(3,5,2);
 imagesc(img2_sys_bin); colormap('gray');title('Image2 Systole Binarized');
 subplot(2,5,7);
 imagesc(img2_dias_bin); colormap('gray');title('Image2 Diastole Binarized');
 
-subplot(2,5,3);
+subplot(3,5,3);
 imagesc(img3_sys_bin); colormap('gray');title('Image3 Systole Binarized');
 subplot(2,5,8);
 imagesc(img3_dias_bin); colormap('gray');title('Image3 Diastole Binarized');
 
-subplot(2,5,4);
+subplot(3,5,4);
 imagesc(img4_sys_bin); colormap('gray');title('Image4 Systole Binarized');
-subplot(2,5,9);
+subplot(3,5,9);
 imagesc(img4_dias_bin); colormap('gray');title('Image4 Diastole Binarized');
 
-subplot(2,5,5);
+subplot(3,5,5);
 imagesc(img5_sys_bin); colormap('gray');title('Image5 Systole Binarized');
-subplot(2,5,10);
+subplot(3,5,10);
 imagesc(img5_dias_bin); colormap('gray');title('Image5 Diastole Binarized');
+subplot(3,5,11);
+imagesc(imerosiondiast1); colormap('gray');title('Image1 Diastole Binarized erosed');
 
 %% ================== 5. Labels to separe the regions =============
 
@@ -221,53 +225,55 @@ imagesc(label4_dias); colormap('gray'); title('Regions Image4 Dias');
 subplot(2,5,10);
 imagesc(label5_dias); colormap('gray'); title('Regions Image5 Dias');
 
-%% ================== 8. Erosion et dilatation ===========================
+%% ================== 8. Dilatation et Erosion ===========================
 
 
 n = 5;
 SE = strel('sphere', n);
 
-label1_sys_op  = imopen(label1_sys,SE);
-label2_sys_op  = imopen(label2_sys,SE);
-label3_sys_op  = imopen(label3_sys),SE);
-label4_sys_op  = imopen(label4_sys(label4_sys ==13),SE);
-label5_sys_op  = imopen(label5_sys(label5_sys ==13),SE);
+label1_sys_op  = imclose(label1_sys,SE);
+label2_sys_op  = imclose(label2_sys,SE);
+label3_sys_op  = imclose(label3_sys,SE);
+label4_sys_op  = imclose(label4_sys,SE);
+label5_sys_op  = imclose(label5_sys,SE);
 
-label1_dias_op  = imopen(label1_sys(label1_dias ==13),SE);
-label2_dias_op  = imopen(label2_sys(label2_dias ==18),SE);
-label3_dias_op  = imopen(label3_sys(label3_dias ==18),SE);
-label4_dias_op  = imopen(label4_sys(label4_dias ==18),SE);
-label5_dias_op  = imopen(label5_sys(label5_dias ==13),SE);
+label1_dias_op  = imclose(label1_dias,SE);
+label2_dias_op  = imclose(label2_dias,SE);
+label3_dias_op  = imclose(label3_dias,SE);
+label4_dias_op  = imclose(label4_dias,SE);
+label5_dias_op  = imclose(label5_dias,SE);
 
 % --- Sístole: igual que antes ---
 figure;
 subplot(2,5,1);
-imagesc(label1_sys_op); colormap('gray'); title('Aperture Image1 Sys');
+imagesc(label1_sys_op); colormap('gray'); title('Fermeture Image1 Sys');
 
 subplot(2,5,2);
-imagesc(label2_sys_op); colormap('gray'); title('Aperture Image2 Sys');
+imagesc(label2_sys_op); colormap('gray'); title('Fermeture Image2 Sys');
 
 subplot(2,5,3);
-imagesc(label3_sys_op); colormap('gray'); title('Aperture Image3 Sys');
+imagesc(label3_sys_op); colormap('gray'); title('Fermeture Image3 Sys');
 
 subplot(2,5,4);
-imagesc(label4_sys_op); colormap('gray'); title('Aperture Image4 Sys');
+imagesc(label4_sys_op); colormap('gray'); title('Fermeture Image4 Sys');
 
 subplot(2,5,5);
-imagesc(label5_sys_op); colormap('gray'); title('Aperture Image5 Sys');
+imagesc(label5_sys_op); colormap('gray'); title('Fermeture Image5 Sys');
 
 % --- Diástole ---
 subplot(2,5,6);
-imagesc(label1_dias_op); colormap('gray'); title('Aperture Image1 Dyas');
+imagesc(label1_dias_op); colormap('gray'); title('Fermeture Image1 Dyas');
 
 subplot(2,5,7);
-imagesc(label2_dias_op); colormap('gray'); title('Aperture Image2 Dyas');
+imagesc(label2_dias_op); colormap('gray'); title('Fermeture Image2 Dyas');
 
 subplot(2,5,8);
-imagesc(label3_dias_op); colormap('gray'); title('Aperture Image3 Dyas');
+imagesc(label3_dias_op); colormap('gray'); title('Fermeture Image3 Dyas');
 
 subplot(2,5,9);
-imagesc(label4_dias_op); colormap('gray'); title('Aperture Image4 Dyas');
+imagesc(label4_dias_op); colormap('gray'); title('Fermeture Image4 Dyas');
 
 subplot(2,5,10);
-imagesc(label5_dias_op); colormap('gray'); title('Aperture Image5 Dyas');
+imagesc(label5_dias_op); colormap('gray'); title('Fermeture Image5 Dyas');
+
+

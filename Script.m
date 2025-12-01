@@ -145,31 +145,35 @@ img3_dias_bin = imbinarize(img3_dias_S);
 img4_dias_bin = imbinarize(img4_dias_S);
 img5_dias_bin = imbinarize(img5_dias_S);
 
-figure;
-subplot(2,5,1);
-imagesc(img1_sys_bin); colormap('gray'); title('Image1 Systole Binarized');
-subplot(2,5,6);
-imagesc(img1_dias_bin); colormap('gray');title('Image1 Diastole Binarized');
+se5 = strel('disk', 5);
+imerosiondiast1=imopen(img1_dias_bin, se5);
 
-subplot(2,5,2);
+figure;
+subplot(3,5,1);
+imagesc(img1_sys_bin); colormap('gray'); title('Image1 Systole Binarized');
+subplot(3,5,6);
+imagesc(img1_dias_bin); colormap('gray');title('Image1 Diastole Binarized');
+subplot(3,5,2);
 imagesc(img2_sys_bin); colormap('gray');title('Image2 Systole Binarized');
-subplot(2,5,7);
+subplot(3,5,7);
 imagesc(img2_dias_bin); colormap('gray');title('Image2 Diastole Binarized');
 
-subplot(2,5,3);
+subplot(3,5,3);
 imagesc(img3_sys_bin); colormap('gray');title('Image3 Systole Binarized');
-subplot(2,5,8);
+subplot(3,5,8);
 imagesc(img3_dias_bin); colormap('gray');title('Image3 Diastole Binarized');
 
-subplot(2,5,4);
+subplot(3,5,4);
 imagesc(img4_sys_bin); colormap('gray');title('Image4 Systole Binarized');
-subplot(2,5,9);
+subplot(3,5,9);
 imagesc(img4_dias_bin); colormap('gray');title('Image4 Diastole Binarized');
 
-subplot(2,5,5);
+subplot(3,5,5);
 imagesc(img5_sys_bin); colormap('gray');title('Image5 Systole Binarized');
-subplot(2,5,10);
+subplot(3,5,10);
 imagesc(img5_dias_bin); colormap('gray');title('Image5 Diastole Binarized');
+subplot(3,5,11);
+imagesc(imerosiondiast1); colormap('gray');title('Image1 Diastole Binarized erosed');
 
 %% ================== 5. Labels to separe the regions =============
 
@@ -179,7 +183,8 @@ label3_sys  = bwlabel(img3_sys_bin) == 14;
 label4_sys  = bwlabel(img4_sys_bin) == 13;
 label5_sys  = bwlabel(img5_sys_bin) == 15;
 
-label1_dias = bwlabel(img1_dias_bin) == 13;
+%llabel1_dias = bwlabel(img1_dias_bin);
+label1_dias = bwlabel(imerosiondiast1)== 3;
 label2_dias = bwlabel(img2_dias_bin) == 18;
 label3_dias = bwlabel(img3_dias_bin) == 18;
 label4_dias = bwlabel(img4_dias_bin) == 18;
