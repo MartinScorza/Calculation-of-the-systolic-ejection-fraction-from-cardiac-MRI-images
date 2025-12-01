@@ -8,7 +8,7 @@ clear
 clc
 
 addpath(genpath(pwd));
-
+  
 img1_sys = dicomread('IM-0009-0020.dcm');
 img1_dias = dicomread('IM-0009-0028.dcm');
 img2_sys = dicomread('IM-0009-0040.dcm');
@@ -47,7 +47,7 @@ imagesc(img5_sys); colormap('gray'); title('Image5 Systole Original');
 subplot(2,5,10);
 imagesc(img5_dias); colormap('gray'); title('Image5 Diastole Original');
 
-%% ================== 2. Recorte cuadrado =============================
+%% ================== 2. Plot zone of interest =============================
 idx1 = 70;
 idx2 = 170;
 
@@ -132,7 +132,7 @@ imagesc(img5_sys_S); colormap('gray');title('Image5 Systole S-curve');
 subplot(2,5,10);
 imagesc(img5_dias_S); colormap('gray');title('Image5 Diastole S-curve');
 
-%% ================== 4. Binarización ================================
+%% ================== 4. Binarization ================================
 img1_sys_bin  = imbinarize(img1_sys_S);
 img2_sys_bin  = imbinarize(img2_sys_S);
 img3_sys_bin  = imbinarize(img3_sys_S);
@@ -171,115 +171,105 @@ imagesc(img5_sys_bin); colormap('gray');title('Image5 Systole Binarized');
 subplot(2,5,10);
 imagesc(img5_dias_bin); colormap('gray');title('Image5 Diastole Binarized');
 
-%% ================== 5. Labels para todos (como antes) ==============
-label1_sys  = bwlabel(img1_sys_bin);
-label2_sys  = bwlabel(img2_sys_bin);
-label3_sys  = bwlabel(img3_sys_bin);
-label4_sys  = bwlabel(img4_sys_bin);
-label5_sys  = bwlabel(img5_sys_bin);
+%% ================== 5. Labels to separe the regions =============
 
-label1_dias = bwlabel(img1_dias_bin);
-label2_dias = bwlabel(img2_dias_bin);
-label3_dias = bwlabel(img3_dias_bin);
-label4_dias = bwlabel(img4_dias_bin);
-label5_dias = bwlabel(img5_dias_bin);
+label1_sys  = bwlabel(img1_sys_bin) == 13;
+label2_sys  = bwlabel(img2_sys_bin) == 14;
+label3_sys  = bwlabel(img3_sys_bin) == 14;
+label4_sys  = bwlabel(img4_sys_bin) == 13;
+label5_sys  = bwlabel(img5_sys_bin) == 15;
 
-%% ================== 6. Segmentación ESPECIAL para Image1 Diastole ===
-
-BW = img1_dias_bin;                % imagen binaria de Image1 Diastole (100x100)
-BW = bwareaopen(BW,50);            % elimina regiones blancas muy pequeñas (<50 px)
-se = strel('disk',2);              % elemento estructurante disco de radio 2
-BW = imopen(BW,se);                % apertura: erosión + dilatación (suaviza, quita puntos)
-BW = imfill(BW,'holes');           % rellena agujeros dentro de cada región blanca
-
-% Cada "regionprops" corresponde a una región blanca CONECTADA
-% (un objeto/cavidad completa en la imagen binaria).
-stats = regionprops(BW,'Area','Perimeter','Centroid','PixelIdxList');
-
-mask1_dias_LV = false(size(BW));   % máscara final del ventrículo izquierdo (todo negro al inicio)
-
-if ~isempty(stats)
-    % Extraemos propiedades de TODAS las regiones conectadas
-    areas = [stats.Area];          % área de cada región blanca
-    per   = [stats.Perimeter];     % perímetro de cada región
-
-    % Medida de circularidad: ~1 si la región se parece a un círculo
-    circ  = 4*pi*areas ./ (per.^2 + eps);
-
-    % Centroides (x,y) de cada región
-    centroids = reshape([stats.Centroid],2,[]).';
-    x_cent = centroids(:,1);
-    y_cent = centroids(:,2);
-
-    [H,W] = size(BW);
-
-    % --- FILTRO POR ÁREA RAZONABLE ---
-    % Nos quedamos sólo con regiones suficientemente grandes
-    % (candidatas a cavidad ventricular).
-    areaMin = 200;
-    cand = find(areas >= areaMin); % índices de regiones candidatas
-    if isempty(cand)
-        cand = 1:numel(areas);     % si ninguna pasa el filtro, usamos todas
-    end
-
-    % --- PRIORIZAR ZONA INFERIOR DERECHA ---
-    % En esta imagen sabemos que el VI está abajo y a la derecha.
-    maskBR = (x_cent(cand) > 0.5*W) & (y_cent(cand) > 0.5*H);
-
-    if any(maskBR)
-        % Candidatas que están en la zona "bottom-right"
-        candBR = cand(maskBR);
-        circBR = circ(candBR);
-
-        % Entre ellas elegimos la más circular (mejor forma de cavidad)
-        [~,idxLocal] = max(circBR);
-        idx = candBR(idxLocal);
-    else
-        % Si ninguna región grande está en esa zona,
-        % Plan B: tomar la región candidata que esté más abajo en la imagen.
-        [~,idxLocal] = max(y_cent(cand));
-        idx = cand(idxLocal);
-    end
-
-    % Construimos la máscara final:
-    % ponemos a 1 sólo los píxeles de la región elegida (el VI)
-    mask1_dias_LV(stats(idx).PixelIdxList) = true;
-end
+label1_dias = bwlabel(img1_dias_bin) == 13;
+label2_dias = bwlabel(img2_dias_bin) == 18;
+label3_dias = bwlabel(img3_dias_bin) == 18;
+label4_dias = bwlabel(img4_dias_bin) == 18;
+label5_dias = bwlabel(img5_dias_bin) == 13;
 
 
-%% ================== 7. Figura de REGIONES ===========================
+%% ================== 6. Plot regions ===========================
 figure;
 
 % --- Sístole: igual que antes ---
 subplot(2,5,1);
-imagesc(label1_sys ==13); colormap('gray'); title('Regions Image1 Sys');
+imagesc(label1_sys); colormap('gray'); title('Regions Image1 Sys');
 
 subplot(2,5,2);
-imagesc(label2_sys ==14); colormap('gray'); title('Regions Image2 Sys');
+imagesc(label2_sys); colormap('gray'); title('Regions Image2 Sys');
 
 subplot(2,5,3);
-imagesc(label3_sys ==14); colormap('gray'); title('Regions Image3 Sys');
+imagesc(label3_sys); colormap('gray'); title('Regions Image3 Sys');
 
 subplot(2,5,4);
-imagesc(label4_sys ==13); colormap('gray'); title('Regions Image4 Sys');
+imagesc(label4_sys); colormap('gray'); title('Regions Image4 Sys');
 
 subplot(2,5,5);
-imagesc(label5_sys ==15); colormap('gray'); title('Regions Image5 Sys');
+imagesc(label5_sys); colormap('gray'); title('Regions Image5 Sys');
 
 % --- Diástole ---
-% Image1: usamos la máscara especial (no el label1_dias==13)
 subplot(2,5,6);
-imagesc(mask1_dias_LV); colormap('gray'); title('Regions Image1 Dias');
+imagesc(label1_dias); colormap('gray'); title('Regions Image1 Dias');
 
-% Las otras diástoles quedan como las tenías que ya funcionaban
 subplot(2,5,7);
-imagesc(label2_dias ==18); colormap('gray'); title('Regions Image2 Dias');
+imagesc(label2_dias); colormap('gray'); title('Regions Image2 Dias');
 
 subplot(2,5,8);
-imagesc(label3_dias ==18); colormap('gray'); title('Regions Image3 Dias');
+imagesc(label3_dias); colormap('gray'); title('Regions Image3 Dias');
 
 subplot(2,5,9);
-imagesc(label4_dias ==18); colormap('gray'); title('Regions Image4 Dias');
+imagesc(label4_dias); colormap('gray'); title('Regions Image4 Dias');
 
 subplot(2,5,10);
-imagesc(label5_dias ==13); colormap('gray'); title('Regions Image5 Dias');
+imagesc(label5_dias); colormap('gray'); title('Regions Image5 Dias');
+
+%% ================== 8. Dilatation et Erosion ===========================
+
+
+n = 5;
+SE = strel('sphere', n);
+
+label1_sys_op  = imclose(label1_sys,SE);
+label2_sys_op  = imclose(label2_sys,SE);
+label3_sys_op  = imclose(label3_sys,SE);
+label4_sys_op  = imclose(label4_sys,SE);
+label5_sys_op  = imclose(label5_sys,SE);
+
+label1_dias_op  = imclose(label1_dias,SE);
+label2_dias_op  = imclose(label2_dias,SE);
+label3_dias_op  = imclose(label3_dias,SE);
+label4_dias_op  = imclose(label4_dias,SE);
+label5_dias_op  = imclose(label5_dias,SE);
+
+% --- Sístole: igual que antes ---
+figure;
+subplot(2,5,1);
+imagesc(label1_sys_op); colormap('gray'); title('Fermeture Image1 Sys');
+
+subplot(2,5,2);
+imagesc(label2_sys_op); colormap('gray'); title('Fermeture Image2 Sys');
+
+subplot(2,5,3);
+imagesc(label3_sys_op); colormap('gray'); title('Fermeture Image3 Sys');
+
+subplot(2,5,4);
+imagesc(label4_sys_op); colormap('gray'); title('Fermeture Image4 Sys');
+
+subplot(2,5,5);
+imagesc(label5_sys_op); colormap('gray'); title('Fermeture Image5 Sys');
+
+% --- Diástole ---
+subplot(2,5,6);
+imagesc(label1_dias_op); colormap('gray'); title('Fermeture Image1 Dyas');
+
+subplot(2,5,7);
+imagesc(label2_dias_op); colormap('gray'); title('Fermeture Image2 Dyas');
+
+subplot(2,5,8);
+imagesc(label3_dias_op); colormap('gray'); title('Fermeture Image3 Dyas');
+
+subplot(2,5,9);
+imagesc(label4_dias_op); colormap('gray'); title('Fermeture Image4 Dyas');
+
+subplot(2,5,10);
+imagesc(label5_dias_op); colormap('gray'); title('Fermeture Image5 Dyas');
+
+
