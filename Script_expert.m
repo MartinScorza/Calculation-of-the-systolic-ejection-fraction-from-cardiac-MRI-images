@@ -1,0 +1,27 @@
+
+figure;
+subplot(2,5,1);
+imagesc(exp1_sys); colormap('gray'); title('Expert Image1 Systole');
+subplot(2,5,6);
+imagesc(exp1_dias); colormap('gray'); title('Expert Image1 Dyastole');
+
+subplot(2,5,2);
+imagesc(exp2_sys); colormap('gray'); title('Expert Image2 Systole');
+subplot(2,5,7);
+imagesc(exp2_dias); colormap('gray'); title('Expert Image2 Dyastole');
+
+subplot(2,5,3);
+imagesc(exp3_sys); colormap('gray'); title('Expert Image3 Systole');
+subplot(2,5,8);
+imagesc(exp3_dias); colormap('gray'); title('Expert Image3 Dyastole');
+
+subplot(2,5,4);
+imagesc(exp4_sys); colormap('gray'); title('Expert Image4 Systole');
+subplot(2,5,9);
+imagesc(exp4_dias); colormap('gray'); title('Expert Image4 Dyastole');
+
+subplot(2,5,5);
+imagesc(exp5_sys); colormap('gray'); title('Expert Image5 Systole');
+subplot(2,5,10);
+imagesc(exp5_dias); colormap('gray'); title('Expert Image5 Dyastole');
+

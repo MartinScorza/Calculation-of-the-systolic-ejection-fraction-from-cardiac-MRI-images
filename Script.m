@@ -9,16 +9,39 @@ clc
 
 addpath(genpath(pwd));
   
-img1_sys = dicomread('IM-0009-0020.dcm');
-img1_dias = dicomread('IM-0009-0028.dcm');
-img2_sys = dicomread('IM-0009-0040.dcm');
-img2_dias = dicomread('IM-0009-0048.dcm');
-img3_sys = dicomread('IM-0009-0060.dcm');
-img3_dias = dicomread('IM-0009-0068.dcm');
-img4_sys = dicomread('IM-0009-0080.dcm');
-img4_dias = dicomread('IM-0009-0088.dcm');
-img5_sys = dicomread('IM-0009-0100.dcm');
-img5_dias = dicomread('IM-0009-0108.dcm');
+folderimages = fullfile(pwd, 'images_og');
+  
+img1_sys  = dicomread(fullfile(folderimages, 'IM-0009-0020.dcm'));
+img1_dias = dicomread(fullfile(folderimages, 'IM-0009-0028.dcm'));
+
+img2_sys  = dicomread(fullfile(folderimages, 'IM-0009-0040.dcm'));
+img2_dias = dicomread(fullfile(folderimages, 'IM-0009-0048.dcm'));
+
+img3_sys  = dicomread(fullfile(folderimages, 'IM-0009-0060.dcm'));
+img3_dias = dicomread(fullfile(folderimages, 'IM-0009-0068.dcm'));
+
+img4_sys  = dicomread(fullfile(folderimages, 'IM-0009-0080.dcm'));
+img4_dias = dicomread(fullfile(folderimages, 'IM-0009-0088.dcm'));
+
+img5_sys  = dicomread(fullfile(folderimages, 'IM-0009-0100.dcm'));
+img5_dias = dicomread(fullfile(folderimages, 'IM-0009-0108.dcm'));
+
+folderexpert = fullfile(pwd, 'Expert');
+
+exp1_sys = imread(fullfile(folderexpert,'IM-0001-0020-icontour-manual.pgm'));
+exp1_dias = imread(fullfile(folderexpert,'IM-0001-0028-icontour-manual.pgm'));
+
+exp2_sys = imread(fullfile(folderexpert,'IM-0001-0040-icontour-manual.pgm'));
+exp2_dias = imread(fullfile(folderexpert,'IM-0001-0048-icontour-manual.pgm'));
+
+exp3_sys = imread(fullfile(folderexpert,'IM-0001-0060-icontour-manual.pgm'));
+exp3_dias = imread(fullfile(folderexpert,'IM-0001-0068-icontour-manual.pgm'));
+
+exp4_sys = imread(fullfile(folderexpert,'IM-0001-0080-icontour-manual.pgm'));
+exp4_dias = imread(fullfile(folderexpert,'IM-0001-0088-icontour-manual.pgm'));
+
+exp5_sys = imread(fullfile(folderexpert,'IM-0001-0100-icontour-manual.pgm'));
+exp5_dias = imread(fullfile(folderexpert,'IM-0001-0108-icontour-manual.pgm'));
 
 %% ================== 1. Plot original images =========================
 figure;
@@ -277,4 +300,51 @@ imagesc(label4_dias_op); colormap('gray'); title('Fermeture Image4 Dyas');
 subplot(2,5,10);
 imagesc(label5_dias_op); colormap('gray'); title('Fermeture Image5 Dyas');
 
+%% ================== 9. Reshape image ===========================
 
+originalSize = [256 256]; % tamaño original DICOM
+
+label1_sys_big  = PadToOriginal(label1_sys_op,  idx1, idx2, originalSize);
+label2_sys_big  = PadToOriginal(label2_sys_op,  idx1, idx2, originalSize);
+label3_sys_big  = PadToOriginal(label3_sys_op,  idx1, idx2, originalSize);
+label4_sys_big  = PadToOriginal(label4_sys_op,  idx1, idx2, originalSize);
+label5_sys_big  = PadToOriginal(label5_sys_op,  idx1, idx2, originalSize);
+
+label1_dias_big = PadToOriginal(label1_dias_op, idx1, idx2, originalSize);
+label2_dias_big = PadToOriginal(label2_dias_op, idx1, idx2, originalSize);
+label3_dias_big = PadToOriginal(label3_dias_op, idx1, idx2, originalSize);
+label4_dias_big = PadToOriginal(label4_dias_op, idx1, idx2, originalSize);
+label5_dias_big = PadToOriginal(label5_dias_op, idx1, idx2, originalSize);
+
+% --- Sístole: igual que antes ---
+figure;
+subplot(2,5,1);
+imagesc(label1_sys_big); colormap('gray'); title('Vol Img1Sys Estimé');
+
+subplot(2,5,2);
+imagesc(label2_sys_big); colormap('gray'); title('Vol Img2Sys Estimé');
+
+subplot(2,5,3);
+imagesc(label3_sys_big); colormap('gray'); title('Vol Img3Sys Estimé');
+
+subplot(2,5,4);
+imagesc(label4_sys_big); colormap('gray'); title('Vol Img4Sys Estimé');
+
+subplot(2,5,5);
+imagesc(label5_sys_big); colormap('gray'); title('Vol Img5Sys Estimé');
+
+% --- Diástole ---
+subplot(2,5,6);
+imagesc(label1_dias_big); colormap('gray'); title('Vol Img1Dias Estimé');
+
+subplot(2,5,7);
+imagesc(label2_dias_big); colormap('gray'); title('Vol Img2Dias Estimé');
+
+subplot(2,5,8);
+imagesc(label3_dias_big); colormap('gray'); title('Vol Img3Dias Estimé');
+
+subplot(2,5,9);
+imagesc(label4_dias_big); colormap('gray'); title('Vol Img4Dias Estimé');
+
+subplot(2,5,10);
+imagesc(label5_dias_big); colormap('gray'); title('Vol Img5Dias Estimé');
