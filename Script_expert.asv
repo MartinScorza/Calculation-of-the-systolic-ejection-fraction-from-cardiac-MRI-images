@@ -1,6 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Lecture et afichage des resultats esperés
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 figure;
 subplot(2,5,1);
@@ -28,8 +25,9 @@ imagesc(exp5_sys); colormap('gray'); title('Expert Image5 Systole');
 subplot(2,5,10);
 imagesc(exp5_dias); colormap('gray'); title('Expert Image5 Dyastole');
 
-fprintf('Fraccion de eyeccion (teorica) IMG 1: %g\n', sum(exp1_sys(:)/256) - sum(exp1_dias(:)/256));
-fprintf('Fraccion de eyeccion (teorica) IMG 2: %g\n', sum(exp2_sys(:)/256) - sum(exp2_dias(:)/256));
-fprintf('Fraccion de eyeccion (teorica) IMG 3: %g\n', sum(exp3_sys(:)/256) - sum(exp3_dias(:)/256));
-fprintf('Fraccion de eyeccion (teorica) IMG 4: %g\n', sum(exp4_sys(:)/256) - sum(exp4_dias(:)/256));
-fprintf('Fraccion de eyeccion (teorica) IMG 5: %g\n', sum(exp5_sys(:)/256) - sum(exp5_dias(:)/256));
+%% Fracción de eyección teórica
+disp(['Fraccion de eyeccion (teorica) IMG 1: ',sum(exp1_sys) - sum(exp1_dias);
+disp(['Fraccion de eyeccion (teorica) IMG 2: ',sum(exp1_sys) - sum(exp1_dias);
+disp(['Fraccion de eyeccion (teorica) IMG 3: ',sum(exp1_sys) - sum(exp1_dias);
+disp(['Fraccion de eyeccion (teorica) IMG 4: ',sum(exp1_sys) - sum(exp1_dias);
+disp(['Fraccion de eyeccion (teorica) IMG 5: ',sum(exp1_sys) - sum(exp1_dias);
