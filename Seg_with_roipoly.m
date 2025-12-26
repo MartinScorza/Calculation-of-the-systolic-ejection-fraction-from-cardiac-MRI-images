@@ -118,9 +118,9 @@ fprintf('Volumen estimado (estimada) IMG 5 Dias: %g\n', sum(roipoly5_dias(:)));
 
 %% Fracción de eyección estimada
 fprintf('Resultados usando segmentacion manual (roipoly) \n');
-fprintf('Fraccion de eyeccion (estimada) IMG 1: %g\n', sum(roipoly1_sys(:)) - sum(roipoly1_dias(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 2: %g\n', sum(roipoly2_sys(:)) - sum(roipoly2_dias(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 3: %g\n', sum(roipoly3_sys(:)) - sum(roipoly3_dias(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 4: %g\n', sum(roipoly4_sys(:)) - sum(roipoly4_dias(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 5: %g\n', sum(roipoly5_sys(:)) - sum(roipoly5_dias(:)));
+fprintf('Fraccion de eyeccion (estimada) IMG 1: %g\n', (sum(roipoly1_sys(:)) - sum(roipoly1_dias(:)))/sum(roipoly1_sys(:)));
+fprintf('Fraccion de eyeccion (estimada) IMG 2: %g\n', (sum(roipoly2_sys(:)) - sum(roipoly2_dias(:)))/sum(roipoly1_sys(:)));
+fprintf('Fraccion de eyeccion (estimada) IMG 3: %g\n', (sum(roipoly3_sys(:)) - sum(roipoly3_dias(:)))/sum(roipoly1_sys(:)));
+fprintf('Fraccion de eyeccion (estimada) IMG 4: %g\n', (sum(roipoly4_sys(:)) - sum(roipoly4_dias(:)))/sum(roipoly1_sys(:)));
+fprintf('Fraccion de eyeccion (estimada) IMG 5: %g\n', (sum(roipoly5_sys(:)) - sum(roipoly5_dias(:)))/sum(roipoly1_sys(:)));
 

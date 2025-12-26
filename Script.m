@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% FIORITI Federico
 %%% MAZZANTE Lorenzo
 %%% SCORZA Martín
+%%% FIORITI Federico
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear
@@ -168,9 +168,6 @@ img3_dias_bin = imbinarize(img3_dias_S, 0.25);
 img4_dias_bin = imbinarize(img4_dias_S, 0.35);
 img5_dias_bin = imbinarize(img5_dias_S, 0.31);
 
-
-%se5 = strel('sphere', 3);
-%imerosiondiast1=imopen(img1_dias_bin, se5);
 
 figure;
 subplot(2,5,1);

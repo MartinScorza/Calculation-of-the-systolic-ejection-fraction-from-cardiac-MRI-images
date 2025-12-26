@@ -43,8 +43,8 @@ fprintf('Volumen esperado (expertos) IMG 5 Dias: %g\n', sum(exp5_dias(:)));
 
 %% Fraccion de eyeccion esperada
 fprintf('Resultados esperados (segun expertos) \n');
-fprintf('Fraccion de eyeccion (teorica) IMG 1: %g\n', sum(exp1_sys(:)) - sum(exp1_dias(:)));
-fprintf('Fraccion de eyeccion (teorica) IMG 2: %g\n', sum(exp2_sys(:)) - sum(exp2_dias(:)));
-fprintf('Fraccion de eyeccion (teorica) IMG 3: %g\n', sum(exp3_sys(:)) - sum(exp3_dias(:)));
-fprintf('Fraccion de eyeccion (teorica) IMG 4: %g\n', sum(exp4_sys(:)) - sum(exp4_dias(:)));
-fprintf('Fraccion de eyeccion (teorica) IMG 5: %g\n', sum(exp5_sys(:)) - sum(exp5_dias(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 1: %g\n', (sum(exp1_sys(:)) - sum(exp1_dias(:)))/sum(exp1_sys(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 2: %g\n', (sum(exp2_sys(:)) - sum(exp2_dias(:)))/sum(exp1_sys(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 3: %g\n', (sum(exp3_sys(:)) - sum(exp3_dias(:)))/sum(exp1_sys(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 4: %g\n', (sum(exp4_sys(:)) - sum(exp4_dias(:)))/sum(exp1_sys(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 5: %g\n', (sum(exp5_sys(:)) - sum(exp5_dias(:)))/sum(exp1_sys(:)));
