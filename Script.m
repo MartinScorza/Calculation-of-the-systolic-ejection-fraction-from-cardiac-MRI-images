@@ -162,7 +162,7 @@ img3_sys_bin  = imbinarize(img3_sys_S, 0.3);
 img4_sys_bin  = imbinarize(img4_sys_S, 0.3);
 img5_sys_bin  = imbinarize(img5_sys_S, 0.3);
 
-img1_dias_bin = imbinarize(img1_dias_S, 0.3);
+img1_dias_bin = imbinarize(img1_dias_S, 0.35);
 img2_dias_bin = imbinarize(img2_dias_S, 0.18);
 img3_dias_bin = imbinarize(img3_dias_S, 0.25);
 img4_dias_bin = imbinarize(img4_dias_S, 0.35);

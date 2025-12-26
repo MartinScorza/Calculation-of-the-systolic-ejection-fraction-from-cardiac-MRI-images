@@ -2,6 +2,7 @@
 %%% Segmentation with mathematical morphologie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 %% ================== Labels to separe the regions =============
 
 label1_sys  = bwlabel(img1_sys_bin) == 13;
@@ -11,7 +12,7 @@ label4_sys  = bwlabel(img4_sys_bin) == 12;
 label5_sys  = bwlabel(img5_sys_bin) == 15;
 
 %llabel1_dias = bwlabel(img1_dias_bin);
-label1_dias = bwlabel(img1_dias_bin, 4) == 30;
+label1_dias = bwlabel(img1_dias_bin) == 18;
 label2_dias = bwlabel(img2_dias_bin) == 17;
 label3_dias = bwlabel(img3_dias_bin) == 27;
 label4_dias = bwlabel(img4_dias_bin) == 26;
@@ -55,8 +56,7 @@ imagesc(label5_dias); colormap('gray'); title('Regions Image5 Dias');
 
 %% ================== Dilatation et Erosion ===========================
 
-n = 9;
-SE = strel('sphere', n);
+SE7 = strel('sphere', 7);
 
 label1_sys_op  = imclose(label1_sys,SE);
 label2_sys_op  = imclose(label2_sys,SE);
@@ -69,6 +69,23 @@ label2_dias_op  = imclose(label2_dias,SE);
 label3_dias_op  = imclose(label3_dias,SE);
 label4_dias_op  = imclose(label4_dias,SE);
 label5_dias_op  = imclose(label5_dias,SE);
+
+SE1 = strel('disk', 1);
+SE2 = strel('disk', 2);
+SE4 = strel('disk', 4);
+SE5 = strel('disk', 5);
+
+label1_sys_op  = imdilate(label1_sys_op,SE1);
+label2_sys_op  = imdilate(label2_sys_op,SE1);
+label3_sys_op  = imdilate(label3_sys_op,SE1);
+label4_sys_op  = imdilate(label4_sys_op,SE1);
+label5_sys_op  = imdilate(label5_sys_op,SE1);
+
+label1_dias_op  = imdilate(label1_dias_op,SE2);
+label2_dias_op  = imdilate(label2_dias_op,SE4);
+label3_dias_op  = imdilate(label3_dias_op,SE2);
+label4_dias_op  = imdilate(label4_dias_op,SE5);
+label5_dias_op  = imdilate(label5_dias_op,SE2);
 
 % --- Sístole: igual que antes ---
 figure;
