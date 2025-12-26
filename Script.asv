@@ -28,20 +28,20 @@ img5_dias = dicomread(fullfile(folderimages, 'IM-0009-0108.dcm'));
 
 folderexpert = fullfile(pwd, 'Expert');
 
-exp1_sys = imread(fullfile(folderexpert,'IM-0001-0020-icontour-manual.pgm'))/255;
-exp1_dias = imread(fullfile(folderexpert,'IM-0001-0028-icontour-manual.pgm'))/255;
+exp1_sys = imread(fullfile(folderexpert,'IM-0001-0020-icontour-manual.pgm'));
+exp1_dias = imread(fullfile(folderexpert,'IM-0001-0028-icontour-manual.pgm'));
 
-exp2_sys = imread(fullfile(folderexpert,'IM-0001-0040-icontour-manual.pgm'))/255;
-exp2_dias = imread(fullfile(folderexpert,'IM-0001-0048-icontour-manual.pgm'))/255;
+exp2_sys = imread(fullfile(folderexpert,'IM-0001-0040-icontour-manual.pgm'));
+exp2_dias = imread(fullfile(folderexpert,'IM-0001-0048-icontour-manual.pgm'));
 
-exp3_sys = imread(fullfile(folderexpert,'IM-0001-0060-icontour-manual.pgm'))/255;
-exp3_dias = imread(fullfile(folderexpert,'IM-0001-0068-icontour-manual.pgm'))/255;
+exp3_sys = imread(fullfile(folderexpert,'IM-0001-0060-icontour-manual.pgm'));
+exp3_dias = imread(fullfile(folderexpert,'IM-0001-0068-icontour-manual.pgm'));
 
-exp4_sys = imread(fullfile(folderexpert,'IM-0001-0080-icontour-manual.pgm'))/255;
-exp4_dias = imread(fullfile(folderexpert,'IM-0001-0088-icontour-manual.pgm'))/255;
+exp4_sys = imread(fullfile(folderexpert,'IM-0001-0080-icontour-manual.pgm'));
+exp4_dias = imread(fullfile(folderexpert,'IM-0001-0088-icontour-manual.pgm'));
 
-exp5_sys = imread(fullfile(folderexpert,'IM-0001-0100-icontour-manual.pgm'))/255;
-exp5_dias = imread(fullfile(folderexpert,'IM-0001-0108-icontour-manual.pgm'))/255;
+exp5_sys = imread(fullfile(folderexpert,'IM-0001-0100-icontour-manual.pgm'));
+exp5_dias = imread(fullfile(folderexpert,'IM-0001-0108-icontour-manual.pgm'));
 
 %% ================== 1. Plot original images =========================
 figure;
@@ -157,45 +157,44 @@ imagesc(img5_dias_S); colormap('gray');title('Image5 Diastole S-curve');
 
 %% ================== 4. Binarization ================================
 img1_sys_bin  = imbinarize(img1_sys_S);
-img2_sys_bin  = imbinarize(img2_sys_S, 0.23);
-img3_sys_bin  = imbinarize(img3_sys_S, 0.3);
-img4_sys_bin  = imbinarize(img4_sys_S, 0.3);
-img5_sys_bin  = imbinarize(img5_sys_S, 0.3);
+img2_sys_bin  = imbinarize(img2_sys_S);
+img3_sys_bin  = imbinarize(img3_sys_S);
+img4_sys_bin  = imbinarize(img4_sys_S);
+img5_sys_bin  = imbinarize(img5_sys_S);
 
-img1_dias_bin = imbinarize(img1_dias_S, 0.3);
-img2_dias_bin = imbinarize(img2_dias_S, 0.18);
-img3_dias_bin = imbinarize(img3_dias_S, 0.25);
-img4_dias_bin = imbinarize(img4_dias_S, 0.35);
-img5_dias_bin = imbinarize(img5_dias_S, 0.31);
+img1_dias_bin = imbinarize(img1_dias_S);
+img2_dias_bin = imbinarize(img2_dias_S);
+img3_dias_bin = imbinarize(img3_dias_S);
+img4_dias_bin = imbinarize(img4_dias_S);
+img5_dias_bin = imbinarize(img5_dias_S);
 
-
-%se5 = strel('sphere', 3);
-%imerosiondiast1=imopen(img1_dias_bin, se5);
+se5 = strel('disk', 3);
+imerosiondiast1=imopen(img1_dias_bin, se5);
 
 figure;
-subplot(2,5,1);
+subplot(3,5,1);
 imagesc(img1_sys_bin); colormap('gray'); title('Image1 Systole Binarized');
-subplot(2,5,6);
+subplot(3,5,6);
 imagesc(img1_dias_bin); colormap('gray');title('Image1 Diastole Binarized');
-subplot(2,5,2);
+subplot(3,5,2);
 imagesc(img2_sys_bin); colormap('gray');title('Image2 Systole Binarized');
-subplot(2,5,7);
+subplot(3,5,7);
 imagesc(img2_dias_bin); colormap('gray');title('Image2 Diastole Binarized');
 
-subplot(2,5,3);
+subplot(3,5,3);
 imagesc(img3_sys_bin); colormap('gray');title('Image3 Systole Binarized');
-subplot(2,5,8);
+subplot(3,5,8);
 imagesc(img3_dias_bin); colormap('gray');title('Image3 Diastole Binarized');
 
-subplot(2,5,4);
+subplot(3,5,4);
 imagesc(img4_sys_bin); colormap('gray');title('Image4 Systole Binarized');
-subplot(2,5,9);
+subplot(3,5,9);
 imagesc(img4_dias_bin); colormap('gray');title('Image4 Diastole Binarized');
 
-subplot(2,5,5);
+subplot(3,5,5);
 imagesc(img5_sys_bin); colormap('gray');title('Image5 Systole Binarized');
-subplot(2,5,10);
+subplot(3,5,10);
 imagesc(img5_dias_bin); colormap('gray');title('Image5 Diastole Binarized');
-%subplot(2,5,6);
-%imagesc(imerosiondiast1); colormap('gray');title('Image1 Diastole Binarized erosed');
+subplot(3,5,11);
+imagesc(imerosiondiast1); colormap('gray');title('Image1 Diastole Binarized erosed');
 

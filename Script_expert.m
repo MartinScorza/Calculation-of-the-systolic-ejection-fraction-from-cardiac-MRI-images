@@ -28,8 +28,23 @@ imagesc(exp5_sys); colormap('gray'); title('Expert Image5 Systole');
 subplot(2,5,10);
 imagesc(exp5_dias); colormap('gray'); title('Expert Image5 Dyastole');
 
-fprintf('Fraccion de eyeccion (teorica) IMG 1: %g\n', sum(exp1_sys(:)/256) - sum(exp1_dias(:)/256));
-fprintf('Fraccion de eyeccion (teorica) IMG 2: %g\n', sum(exp2_sys(:)/256) - sum(exp2_dias(:)/256));
-fprintf('Fraccion de eyeccion (teorica) IMG 3: %g\n', sum(exp3_sys(:)/256) - sum(exp3_dias(:)/256));
-fprintf('Fraccion de eyeccion (teorica) IMG 4: %g\n', sum(exp4_sys(:)/256) - sum(exp4_dias(:)/256));
-fprintf('Fraccion de eyeccion (teorica) IMG 5: %g\n', sum(exp5_sys(:)/256) - sum(exp5_dias(:)/256));
+%% Volumenes esperados
+fprintf('Resultados esperados (segun expertos) \n');
+fprintf('Volumen esperado (expertos) IMG 1 Sys: %g\n', sum(exp1_sys(:)));
+fprintf('Volumen esperado (expertos) IMG 2 Sys: %g\n', sum(exp2_sys(:)));
+fprintf('Volumen esperado (expertos) IMG 3 Sys: %g\n', sum(exp3_sys(:)));
+fprintf('Volumen esperado (expertos) IMG 4 Sys: %g\n', sum(exp4_sys(:)));
+fprintf('Volumen esperado (expertos) IMG 5 Sys: %g\n', sum(exp5_sys(:)));
+fprintf('Volumen esperado (expertos) IMG 1 Dias: %g\n', sum(exp1_dias(:)));
+fprintf('Volumen esperado (expertos) IMG 2 Dias: %g\n', sum(exp2_dias(:)));
+fprintf('Volumen esperado (expertos) IMG 3 Dias: %g\n', sum(exp3_dias(:)));
+fprintf('Volumen esperado (expertos) IMG 4 Dias: %g\n', sum(exp4_dias(:)));
+fprintf('Volumen esperado (expertos) IMG 5 Dias: %g\n', sum(exp5_dias(:)));
+
+%% Fraccion de eyeccion esperada
+fprintf('Resultados esperados (segun expertos) \n');
+fprintf('Fraccion de eyeccion (teorica) IMG 1: %g\n', sum(exp1_sys(:)) - sum(exp1_dias(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 2: %g\n', sum(exp2_sys(:)) - sum(exp2_dias(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 3: %g\n', sum(exp3_sys(:)) - sum(exp3_dias(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 4: %g\n', sum(exp4_sys(:)) - sum(exp4_dias(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 5: %g\n', sum(exp5_sys(:)) - sum(exp5_dias(:)));
