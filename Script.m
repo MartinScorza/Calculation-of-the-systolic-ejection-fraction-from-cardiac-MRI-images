@@ -196,6 +196,5 @@ subplot(2,5,5);
 imagesc(img5_sys_bin); colormap('gray');title('Image5 Systole Binarized');
 subplot(2,5,10);
 imagesc(img5_dias_bin); colormap('gray');title('Image5 Diastole Binarized');
-%subplot(2,5,6);
-%imagesc(imerosiondiast1); colormap('gray');title('Image1 Diastole Binarized erosed');
+
 
