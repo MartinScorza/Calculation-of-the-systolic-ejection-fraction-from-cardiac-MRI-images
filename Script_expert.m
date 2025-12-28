@@ -3,48 +3,48 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 figure;
-subplot(2,5,1);
-imagesc(exp1_sys); colormap('gray'); title('Expert Image1 Systole');
 subplot(2,5,6);
+imagesc(exp1_sys); colormap('gray'); title('Expert Image1 Systole');
+subplot(2,5,1);
 imagesc(exp1_dias); colormap('gray'); title('Expert Image1 Dyastole');
 
-subplot(2,5,2);
-imagesc(exp2_sys); colormap('gray'); title('Expert Image2 Systole');
 subplot(2,5,7);
+imagesc(exp2_sys); colormap('gray'); title('Expert Image2 Systole');
+subplot(2,5,2);
 imagesc(exp2_dias); colormap('gray'); title('Expert Image2 Dyastole');
 
-subplot(2,5,3);
-imagesc(exp3_sys); colormap('gray'); title('Expert Image3 Systole');
 subplot(2,5,8);
+imagesc(exp3_sys); colormap('gray'); title('Expert Image3 Systole');
+subplot(2,5,3);
 imagesc(exp3_dias); colormap('gray'); title('Expert Image3 Dyastole');
 
-subplot(2,5,4);
-imagesc(exp4_sys); colormap('gray'); title('Expert Image4 Systole');
 subplot(2,5,9);
+imagesc(exp4_sys); colormap('gray'); title('Expert Image4 Systole');
+subplot(2,5,4);
 imagesc(exp4_dias); colormap('gray'); title('Expert Image4 Dyastole');
 
-subplot(2,5,5);
-imagesc(exp5_sys); colormap('gray'); title('Expert Image5 Systole');
 subplot(2,5,10);
+imagesc(exp5_sys); colormap('gray'); title('Expert Image5 Systole');
+subplot(2,5,5);
 imagesc(exp5_dias); colormap('gray'); title('Expert Image5 Dyastole');
 
 %% Volumenes esperados
 fprintf('Resultados esperados (segun expertos) \n');
-fprintf('Volumen esperado (expertos) IMG 1 Sys: %g\n', sum(exp1_sys(:)));
-fprintf('Volumen esperado (expertos) IMG 2 Sys: %g\n', sum(exp2_sys(:)));
-fprintf('Volumen esperado (expertos) IMG 3 Sys: %g\n', sum(exp3_sys(:)));
-fprintf('Volumen esperado (expertos) IMG 4 Sys: %g\n', sum(exp4_sys(:)));
-fprintf('Volumen esperado (expertos) IMG 5 Sys: %g\n', sum(exp5_sys(:)));
 fprintf('Volumen esperado (expertos) IMG 1 Dias: %g\n', sum(exp1_dias(:)));
 fprintf('Volumen esperado (expertos) IMG 2 Dias: %g\n', sum(exp2_dias(:)));
 fprintf('Volumen esperado (expertos) IMG 3 Dias: %g\n', sum(exp3_dias(:)));
 fprintf('Volumen esperado (expertos) IMG 4 Dias: %g\n', sum(exp4_dias(:)));
 fprintf('Volumen esperado (expertos) IMG 5 Dias: %g\n', sum(exp5_dias(:)));
+fprintf('Volumen esperado (expertos) IMG 1 Sys: %g\n', sum(exp1_sys(:)));
+fprintf('Volumen esperado (expertos) IMG 2 Sys: %g\n', sum(exp2_sys(:)));
+fprintf('Volumen esperado (expertos) IMG 3 Sys: %g\n', sum(exp3_sys(:)));
+fprintf('Volumen esperado (expertos) IMG 4 Sys: %g\n', sum(exp4_sys(:)));
+fprintf('Volumen esperado (expertos) IMG 5 Sys: %g\n', sum(exp5_sys(:)));
 
 %% Fraccion de eyeccion esperada
 fprintf('Resultados esperados (segun expertos) \n');
-fprintf('Fraccion de eyeccion (teorica) IMG 1: %g\n', (sum(exp1_sys(:)) - sum(exp1_dias(:)))/sum(exp1_sys(:)));
-fprintf('Fraccion de eyeccion (teorica) IMG 2: %g\n', (sum(exp2_sys(:)) - sum(exp2_dias(:)))/sum(exp1_sys(:)));
-fprintf('Fraccion de eyeccion (teorica) IMG 3: %g\n', (sum(exp3_sys(:)) - sum(exp3_dias(:)))/sum(exp1_sys(:)));
-fprintf('Fraccion de eyeccion (teorica) IMG 4: %g\n', (sum(exp4_sys(:)) - sum(exp4_dias(:)))/sum(exp1_sys(:)));
-fprintf('Fraccion de eyeccion (teorica) IMG 5: %g\n', (sum(exp5_sys(:)) - sum(exp5_dias(:)))/sum(exp1_sys(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 1: %g\n', (sum(exp1_dias(:)) - sum(exp1_sys(:)))/sum(exp1_dias(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 2: %g\n', (sum(exp2_dias(:)) - sum(exp2_sys(:)))/sum(exp2_dias(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 3: %g\n', (sum(exp3_dias(:)) - sum(exp3_sys(:)))/sum(exp3_dias(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 4: %g\n', (sum(exp4_dias(:)) - sum(exp4_sys(:)))/sum(exp4_dias(:)));
+fprintf('Fraccion de eyeccion (teorica) IMG 5: %g\n', (sum(exp5_dias(:)) - sum(exp5_sys(:)))/sum(exp5_dias(:)));

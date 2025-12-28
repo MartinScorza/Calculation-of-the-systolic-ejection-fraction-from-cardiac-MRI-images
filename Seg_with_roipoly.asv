@@ -1,6 +1,6 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Methode 2: Segmentation manuele avec roipoly
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Segmentation with roipoly
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %[M2_BW1_dias,x1d,y1d] = roipoly(img1_dias_S);
 x1d = [49.0354691075515 50.1910755148742 51.8089244851259 54.1201372997712 57.8180778032037 61.0537757437071 64.2894736842106 67.7562929061785 73.0720823798627 76.3077803203662 80.2368421052632 83.7036613272312 86.0148741418765 87.4016018306636 89.0194508009154 89.7128146453090 90.1750572082380 89.4816933638444 88.0949656750572 86.0148741418765 84.3970251716248 81.6235697940504 79.7745995423341 75.8455377574371 72.3787185354692 69.1430205949657 65.9073226544623 61.5160183066362 58.2803203661328 54.8135011441648 53.1956521739131 52.0400457665904 50.6533180778033 49.0354691075515];
@@ -60,67 +60,67 @@ idx1 = 70;
 idx2 = 170;
 
 M2_BW1_dias_res  = PadToOriginal(M2_BW1_dias,  idx1, idx2, originalSize);
-M2_BW2_dias_res  = PadToOriginal(M2_BW2_dias,  idx1, idx2, originalSize);
-M2_BW3_dias_res  = PadToOriginal(M2_BW3_dias,  idx1, idx2, originalSize);
-M2_BW4_dias_res  = PadToOriginal(M2_BW4_dias,  idx1, idx2, originalSize);
-M2_BW5_dias_res  = PadToOriginal(M2_BW5_dias,  idx1, idx2, originalSize);
+M2_BW1_dias_res  = PadToOriginal(M2_BW2_dias,  idx1, idx2, originalSize);
+M2_BW1_dias_res  = PadToOriginal(M2_BW3_dias,  idx1, idx2, originalSize);
+M2_BW1_dias_res  = PadToOriginal(M2_BW4_dias,  idx1, idx2, originalSize);
+M2_BW1_dias_res  = PadToOriginal(M2_BW5_dias,  idx1, idx2, originalSize);
  
-M2_BW1_sys_res = PadToOriginal(M2_BW1_sys, idx1, idx2, originalSize);
-M2_BW2_sys_res = PadToOriginal(M2_BW2_sys, idx1, idx2, originalSize);
-M2_BW3_sys_res = PadToOriginal(M2_BW3_sys, idx1, idx2, originalSize);
-M2_BW4_sys_res = PadToOriginal(M2_BW4_sys, idx1, idx2, originalSize);
-M2_BW5_sys_res = PadToOriginal(M2_BW5_sys, idx1, idx2, originalSize);
+roipoly1_dias = PadToOriginal(M2_BW1_sys, idx1, idx2, originalSize);
+roipoly2_dias = PadToOriginal(M2_BW2_sys, idx1, idx2, originalSize);
+roipoly3_dias = PadToOriginal(M2_BW3_sys, idx1, idx2, originalSize);
+roipoly4_dias = PadToOriginal(M2_BW4_sys, idx1, idx2, originalSize);
+roipoly5_dias = PadToOriginal(M2_BW5_sys, idx1, idx2, originalSize);
 
 figure;
-subplot(2,5,6);
-imagesc(M2_BW1_sys_res); colormap('gray'); title('Vol Img1Sys Estimé');
-
-subplot(2,5,7);
-imagesc(M2_BW2_sys_res); colormap('gray'); title('Vol Img2Sys Estimé');
-
-subplot(2,5,8);
-imagesc(M2_BW3_sys_res); colormap('gray'); title('Vol Img3Sys Estimé');
-
-subplot(2,5,9);
-imagesc(M2_BW4_sys_res); colormap('gray'); title('Vol Img4Sys Estimé');
-
-subplot(2,5,10);
-imagesc(M2_BW5_sys_res); colormap('gray'); title('Vol Img5Sys Estimé');
-
 subplot(2,5,1);
-imagesc(M2_BW1_dias_res); colormap('gray'); title('Vol Img1Dias Estimé');
+imagesc(roipoly1_sys); colormap('gray'); title('Vol Img1Sys Estimé');
 
 subplot(2,5,2);
-imagesc(M2_BW2_dias_res); colormap('gray'); title('Vol Img2Dias Estimé');
+imagesc(roipoly2_sys); colormap('gray'); title('Vol Img2Sys Estimé');
 
 subplot(2,5,3);
-imagesc(M2_BW3_dias_res); colormap('gray'); title('Vol Img3Dias Estimé');
+imagesc(roipoly3_sys); colormap('gray'); title('Vol Img3Sys Estimé');
 
 subplot(2,5,4);
-imagesc(M2_BW4_dias_res); colormap('gray'); title('Vol Img4Dias Estimé');
+imagesc(roipoly4_sys); colormap('gray'); title('Vol Img4Sys Estimé');
 
 subplot(2,5,5);
-imagesc(M2_BW5_dias_res); colormap('gray'); title('Vol Img5Dias Estimé');
+imagesc(roipoly5_sys); colormap('gray'); title('Vol Img5Sys Estimé');
+
+subplot(2,5,6);
+imagesc(roipoly1_dias); colormap('gray'); title('Vol Img1Dias Estimé');
+
+subplot(2,5,7);
+imagesc(roipoly2_dias); colormap('gray'); title('Vol Img2Dias Estimé');
+
+subplot(2,5,8);
+imagesc(roipoly3_dias); colormap('gray'); title('Vol Img3Dias Estimé');
+
+subplot(2,5,9);
+imagesc(roipoly4_dias); colormap('gray'); title('Vol Img4Dias Estimé');
+
+subplot(2,5,10);
+imagesc(roipoly5_dias); colormap('gray'); title('Vol Img5Dias Estimé');
 
 %% Volumenes estimados
 fprintf('Resultados usando segmentacion manual (roipoly) \n');
-fprintf('Volumen estimado (estimada) IMG 1 Dias: %g\n', sum(M2_BW1_dias_res(:)));
-fprintf('Volumen estimado (estimada) IMG 2 Dias: %g\n', sum(M2_BW2_dias_res(:)));
-fprintf('Volumen estimado (estimada) IMG 3 Dias: %g\n', sum(M2_BW3_dias_res(:)));
-fprintf('Volumen estimado (estimada) IMG 4 Dias: %g\n', sum(M2_BW4_dias_res(:)));
-fprintf('Volumen estimado (estimada) IMG 5 Dias: %g\n', sum(M2_BW5_dias_res(:)));
-fprintf('Volumen estimado (estimada) IMG 1 Sys: %g\n', sum(M2_BW1_sys_res(:)));
-fprintf('Volumen estimado (estimada) IMG 2 Sys: %g\n', sum(M2_BW2_sys_res(:)));
-fprintf('Volumen estimado (estimada) IMG 3 Sys: %g\n', sum(M2_BW3_sys_res(:)));
-fprintf('Volumen estimado (estimada) IMG 4 Sys: %g\n', sum(M2_BW4_sys_res(:)));
-fprintf('Volumen estimado (estimada) IMG 5 Sys: %g\n', sum(M2_BW5_sys_res(:)));
+fprintf('Volumen estimado (estimada) IMG 1 Sys: %g\n', sum(roipoly1_sys(:)));
+fprintf('Volumen estimado (estimada) IMG 2 Sys: %g\n', sum(roipoly2_sys(:)));
+fprintf('Volumen estimado (estimada) IMG 3 Sys: %g\n', sum(roipoly3_sys(:)));
+fprintf('Volumen estimado (estimada) IMG 4 Sys: %g\n', sum(roipoly4_sys(:)));
+fprintf('Volumen estimado (estimada) IMG 5 Sys: %g\n', sum(roipoly5_sys(:)));
+fprintf('Volumen estimado (estimada) IMG 1 Dias: %g\n', sum(roipoly1_dias(:)));
+fprintf('Volumen estimado (estimada) IMG 2 Dias: %g\n', sum(roipoly2_dias(:)));
+fprintf('Volumen estimado (estimada) IMG 3 Dias: %g\n', sum(roipoly3_dias(:)));
+fprintf('Volumen estimado (estimada) IMG 4 Dias: %g\n', sum(roipoly4_dias(:)));
+fprintf('Volumen estimado (estimada) IMG 5 Dias: %g\n', sum(roipoly5_dias(:)));
 
 
 %% Fracción de eyección estimada
 fprintf('Resultados usando segmentacion manual (roipoly) \n');
-fprintf('Fraccion de eyeccion (estimada) IMG 1: %g\n', (sum(M2_BW1_dias_res(:)) - sum(M2_BW1_sys_res(:)))/sum(M2_BW1_dias_res(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 2: %g\n', (sum(M2_BW2_dias_res(:)) - sum(M2_BW2_sys_res(:)))/sum(M2_BW2_dias_res(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 3: %g\n', (sum(M2_BW3_dias_res(:)) - sum(M2_BW3_sys_res(:)))/sum(M2_BW3_dias_res(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 4: %g\n', (sum(M2_BW4_dias_res(:)) - sum(M2_BW4_sys_res(:)))/sum(M2_BW4_dias_res(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 5: %g\n', (sum(M2_BW5_dias_res(:)) - sum(M2_BW5_sys_res(:)))/sum(M2_BW5_dias_res(:)));
+fprintf('Fraccion de eyeccion (estimada) IMG 1: %g\n', (sum(roipoly1_sys(:)) - sum(roipoly1_dias(:)))/sum(roipoly1_sys(:)));
+fprintf('Fraccion de eyeccion (estimada) IMG 2: %g\n', (sum(roipoly2_sys(:)) - sum(roipoly2_dias(:)))/sum(roipoly1_sys(:)));
+fprintf('Fraccion de eyeccion (estimada) IMG 3: %g\n', (sum(roipoly3_sys(:)) - sum(roipoly3_dias(:)))/sum(roipoly1_sys(:)));
+fprintf('Fraccion de eyeccion (estimada) IMG 4: %g\n', (sum(roipoly4_sys(:)) - sum(roipoly4_dias(:)))/sum(roipoly1_sys(:)));
+fprintf('Fraccion de eyeccion (estimada) IMG 5: %g\n', (sum(roipoly5_sys(:)) - sum(roipoly5_dias(:)))/sum(roipoly1_sys(:)));
 
