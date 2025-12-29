@@ -8,12 +8,12 @@ M3_BW2_dias  = lvCircleMask(img2_dias_bin, [15 25], 0.9, 'Img2 Dias');
 M3_BW3_dias  = lvCircleMask(img3_dias_bin, [15 25], 0.9, 'Img3 Dias');
 M3_BW4_dias  = lvCircleMask(img4_dias_bin, [15 25], 0.9, 'Img4 Dias');
 M3_BW5_dias  = lvCircleMask(img5_dias_bin, [15 30], 0.9, 'Img5 Dias');
-
-M3_BW1_sys = lvCircleMask(img1_sys_bin, [8 18], 0.9, 'Img1 Sys');
-M3_BW2_sys = lvCircleMask(img2_sys_bin, [7 16], 0.9, 'Img2 Sys');
-M3_BW3_sys = lvCircleMask(img3_sys_bin, [6 20], 0.9, 'Img3 Sys');
-M3_BW4_sys = lvCircleMask(img4_sys_bin, [5 20], 0.9, 'Img4 Sys');
-M3_BW5_sys = lvCircleMask(img5_sys_bin, [7 16], 0.85, 'Img5 Sys');
+% a
+M3_BW1_sys = lvCircleMask(img1_sys_bin, [7 18], 0.88, 'Img1 Sys');
+M3_BW2_sys = lvCircleMask(img2_sys_bin, [9 16], 0.9, 'Img2 Sys');
+M3_BW3_sys = lvCircleMask(img3_sys_bin, [9 20], 0.9, 'Img3 Sys');
+M3_BW4_sys = lvCircleMask(img4_sys_bin, [6 18], 0.85, 'Img4 Sys');
+M3_BW5_sys = lvCircleMask(img5_sys_bin, [7 20], 0.85, 'Img5 Sys');
 
 %% 
 originalSize = [256 256]; % tamaño original DICOM
