@@ -120,10 +120,10 @@ imagesc(img5_dias_carre); colormap('gray'); title('Image5 Diastole Reduced');
 k  = 10;  % The slope of the S-curve
 x0 = 0.5; % The medium point of the S-curve
 
-% We make a S-curve that elevate the contrast near the medium point
+%We make a S-curve that elevate the contrast near the medium point
 s_curve = @(I) 1 ./ (1 + exp(-k * (I - x0)));
 
-% We aplicate the s-curve to all the images
+% We aplicat
 img1_sys_S   = s_curve(mat2gray(img1_sys_carre));
 img2_sys_S   = s_curve(mat2gray(img2_sys_carre));
 img3_sys_S   = s_curve(mat2gray(img3_sys_carre));
@@ -136,7 +136,6 @@ img3_dias_S  = s_curve(mat2gray(img3_dias_carre));
 img4_dias_S  = s_curve(mat2gray(img4_dias_carre));
 img5_dias_S  = s_curve(mat2gray(img5_dias_carre));
 
-% We plot the results
 figure;
 subplot(2,5,6);
 imagesc(img1_sys_S); colormap('gray'); title('Image1 Systole S-curve');
@@ -165,9 +164,6 @@ imagesc(img5_dias_S); colormap('gray');title('Image5 Diastole S-curve');
 
 %% ================== 4. Binarization ================================
 
-% We make a binarization of the images
-% The limit of the binaritation we use is determinated manually
-
 img1_dias_bin  = imbinarize(img1_dias_S);
 img2_dias_bin  = imbinarize(img2_dias_S, 0.23);
 img3_dias_bin  = imbinarize(img3_dias_S, 0.3);
@@ -180,7 +176,7 @@ img3_sys_bin = imbinarize(img3_sys_S, 0.25);
 img4_sys_bin = imbinarize(img4_sys_S, 0.35);
 img5_sys_bin = imbinarize(img5_sys_S, 0.31);
 
-% We show the images after binarization
+
 figure;
 subplot(2,5,6);
 imagesc(img1_sys_bin); colormap('gray'); title('Image1 Systole Binarized');
