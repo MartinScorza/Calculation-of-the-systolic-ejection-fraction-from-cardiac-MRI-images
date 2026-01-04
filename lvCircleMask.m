@@ -2,14 +2,21 @@
 %%% Function lvCircleMask(imgBin, rRange, sensitivity, figureName)
 %%% - imgBin = The binary image
 %%% - rRange = Range of the radius
-%%% - sensitivity = How many circles you want to detect
-%%% - figureName
+%%% - sensitivity 
+%%% - figureName (to print)
 %%%
 %%% - maskCircle = The mask with the values of the circle
 %%% - center = The center of the circle
 %%% - radius = The radius of the circle
 %%% - metric = Confidence score of the selected circle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% This function detects the left-ventricle (LV) cavity by approximating it
+% as a circle in a binary image. It uses imfindcircles to search for bright,
+% circular structures within a given radius range, then selects the
+% circle whose center is closest to the right. Finally, it
+% returns a filled binary mask corresponding to the selected circle, along
+% with its center, radius, and metric.
 
 function [maskCircle, center, radius, metric] = lvCircleMask(imgBin, rRange, sensitivity, figureName)
 
@@ -32,7 +39,7 @@ function [maskCircle, center, radius, metric] = lvCircleMask(imgBin, rRange, sen
         return; % We return the default values
     end
 
-    % We chose the circle that is farthest to the right.
+    % We chose the circle that is closest to the right.
     [~, idx] = max(centers(:,1));
     % We save the metrics, radius and center of the circle
     metric = metrics(idx);

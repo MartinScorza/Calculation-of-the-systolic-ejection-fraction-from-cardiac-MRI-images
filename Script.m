@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% MAZZANTE Lorenzo
-%%% SCORZA Mart?n
+%%% SCORZA Martin
 %%% FIORITI Federico
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -166,7 +166,8 @@ imagesc(img5_dias_S); colormap('gray');title('Image5 Diastole S-curve');
 %% ================== 4. Binarization ================================
 
 % We make a binarization of the images
-% The limit of the binaritation we use is determinated manually
+% The limit of the binaritation we use is determinated manually and adapted
+% for each image to get the best result
 
 img1_dias_bin  = imbinarize(img1_dias_S);
 img2_dias_bin  = imbinarize(img2_dias_S, 0.23);

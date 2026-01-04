@@ -2,6 +2,8 @@
 %%% Methode 2: Segmentation manuele avec roipoly
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%for each image we have done a manual segmentation (after the S curve) using roipoly and we have saved the vertices of the obtained polynomials forms 
+
 %[M2_BW1_dias,x1d,y1d] = roipoly(img1_dias_S);
 x1d = [49.0354691075515 50.1910755148742 51.8089244851259 54.1201372997712 57.8180778032037 61.0537757437071 64.2894736842106 67.7562929061785 73.0720823798627 76.3077803203662 80.2368421052632 83.7036613272312 86.0148741418765 87.4016018306636 89.0194508009154 89.7128146453090 90.1750572082380 89.4816933638444 88.0949656750572 86.0148741418765 84.3970251716248 81.6235697940504 79.7745995423341 75.8455377574371 72.3787185354692 69.1430205949657 65.9073226544623 61.5160183066362 58.2803203661328 54.8135011441648 53.1956521739131 52.0400457665904 50.6533180778033 49.0354691075515];
 y1d = [59.3203661327231 54.0045766590389 50.7688787185355 48.4576659038901 46.3775743707094 45.2219679633867 44.0663615560641 43.3729977116705 42.2173913043478 42.2173913043478 42.6796338672769 43.3729977116705 45.2219679633867 48.6887871853547 51.2311212814645 54.0045766590389 57.2402745995423 60.9382151029748 64.6361556064073 67.6407322654462 69.4897025171625 71.3386727688787 72.4942791762014 73.6498855835240 73.6498855835240 73.8810068649886 73.8810068649886 72.7254004576659 71.3386727688787 69.2585812356979 67.4096109839817 64.8672768878719 62.5560640732265 59.3203661327231];
@@ -54,6 +56,7 @@ M2_BW5_sys = roipoly(img5_sys_S,x5s,y5s);
 
 
 %% 
+% We plot the results with the images original size
 originalSize = [256 256]; % tamaño original DICOM
 
 idx1 = 70;
@@ -103,24 +106,24 @@ subplot(2,5,5);
 imagesc(M2_BW5_dias_res); colormap('gray'); title('Vol Img5Dias Estimé');
 
 %% Volumenes estimados
-fprintf('Resultados usando segmentacion manual (roipoly) \n');
-fprintf('Volumen estimado (estimada) IMG 1 Dias: %g\n', sum(M2_BW1_dias_res(:)));
-fprintf('Volumen estimado (estimada) IMG 2 Dias: %g\n', sum(M2_BW2_dias_res(:)));
-fprintf('Volumen estimado (estimada) IMG 3 Dias: %g\n', sum(M2_BW3_dias_res(:)));
-fprintf('Volumen estimado (estimada) IMG 4 Dias: %g\n', sum(M2_BW4_dias_res(:)));
-fprintf('Volumen estimado (estimada) IMG 5 Dias: %g\n', sum(M2_BW5_dias_res(:)));
-fprintf('Volumen estimado (estimada) IMG 1 Sys: %g\n', sum(M2_BW1_sys_res(:)));
-fprintf('Volumen estimado (estimada) IMG 2 Sys: %g\n', sum(M2_BW2_sys_res(:)));
-fprintf('Volumen estimado (estimada) IMG 3 Sys: %g\n', sum(M2_BW3_sys_res(:)));
-fprintf('Volumen estimado (estimada) IMG 4 Sys: %g\n', sum(M2_BW4_sys_res(:)));
-fprintf('Volumen estimado (estimada) IMG 5 Sys: %g\n', sum(M2_BW5_sys_res(:)));
+fprintf('-----Results using manual segmentation (roipoly)----- \n');
+fprintf('Estimated volume IMG 1 Dias: %g\n', sum(M2_BW1_dias_res(:)));
+fprintf('Estimated volume IMG 2 Dias: %g\n', sum(M2_BW2_dias_res(:)));
+fprintf('Estimated volume IMG 3 Dias: %g\n', sum(M2_BW3_dias_res(:)));
+fprintf('Estimated volume IMG 4 Dias: %g\n', sum(M2_BW4_dias_res(:)));
+fprintf('Estimated volume IMG 5 Dias: %g\n', sum(M2_BW5_dias_res(:)));
+fprintf('Estimated volume IMG 1 Sys: %g\n', sum(M2_BW1_sys_res(:)));
+fprintf('Estimated volume IMG 2 Sys: %g\n', sum(M2_BW2_sys_res(:)));
+fprintf('Estimated volume IMG 3 Sys: %g\n', sum(M2_BW3_sys_res(:)));
+fprintf('Estimated volume IMG 4 Sys: %g\n', sum(M2_BW4_sys_res(:)));
+fprintf('Estimated volume IMG 5 Sys: %g\n', sum(M2_BW5_sys_res(:)));
 
 
 %% Fracción de eyección estimada
-fprintf('Resultados usando segmentacion manual (roipoly) \n');
-fprintf('Fraccion de eyeccion (estimada) IMG 1: %g\n', (sum(M2_BW1_dias_res(:)) - sum(M2_BW1_sys_res(:)))/sum(M2_BW1_dias_res(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 2: %g\n', (sum(M2_BW2_dias_res(:)) - sum(M2_BW2_sys_res(:)))/sum(M2_BW2_dias_res(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 3: %g\n', (sum(M2_BW3_dias_res(:)) - sum(M2_BW3_sys_res(:)))/sum(M2_BW3_dias_res(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 4: %g\n', (sum(M2_BW4_dias_res(:)) - sum(M2_BW4_sys_res(:)))/sum(M2_BW4_dias_res(:)));
-fprintf('Fraccion de eyeccion (estimada) IMG 5: %g\n', (sum(M2_BW5_dias_res(:)) - sum(M2_BW5_sys_res(:)))/sum(M2_BW5_dias_res(:)));
+fprintf('-----Results using manual segmentation (roipoly)----- \n');
+fprintf('Estimated ejected fraction IMG 1: %g\n', (sum(M2_BW1_dias_res(:)) - sum(M2_BW1_sys_res(:)))/sum(M2_BW1_dias_res(:)));
+fprintf('Estimated ejected fraction IMG 2: %g\n', (sum(M2_BW2_dias_res(:)) - sum(M2_BW2_sys_res(:)))/sum(M2_BW2_dias_res(:)));
+fprintf('Estimated ejected fraction IMG 3: %g\n', (sum(M2_BW3_dias_res(:)) - sum(M2_BW3_sys_res(:)))/sum(M2_BW3_dias_res(:)));
+fprintf('Estimated ejected fraction IMG 4: %g\n', (sum(M2_BW4_dias_res(:)) - sum(M2_BW4_sys_res(:)))/sum(M2_BW4_dias_res(:)));
+fprintf('Estimated ejected fraction IMG 5: %g\n', (sum(M2_BW5_dias_res(:)) - sum(M2_BW5_sys_res(:)))/sum(M2_BW5_dias_res(:)));
 

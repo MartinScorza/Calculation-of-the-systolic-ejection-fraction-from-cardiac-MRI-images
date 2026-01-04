@@ -141,38 +141,38 @@ M1_img5_sys_res = PadToOriginal(M1_BW5_sys_cl_d, idx1, idx2, originalSize);
 % We plot the results with the images original size
 figure;
 subplot(2,5,6);
-imagesc(M1_img1_sys_res); colormap('gray'); title('Vol Img1Sys Estim?');
+imagesc(M1_img1_sys_res); colormap('gray'); title('Vol Img1Sys Estime');
 
 subplot(2,5,7);
-imagesc(M1_img2_sys_res); colormap('gray'); title('Vol Img2Sys Estim?');
+imagesc(M1_img2_sys_res); colormap('gray'); title('Vol Img2Sys Estime');
 
 subplot(2,5,8);
-imagesc(M1_img3_sys_res); colormap('gray'); title('Vol Img3Sys Estim?');
+imagesc(M1_img3_sys_res); colormap('gray'); title('Vol Img3Sys Estime');
 
 subplot(2,5,9);
-imagesc(M1_img4_sys_res); colormap('gray'); title('Vol Img4Sys Estim?');
+imagesc(M1_img4_sys_res); colormap('gray'); title('Vol Img4Sys Estime');
 
 subplot(2,5,10);
-imagesc(M1_img5_sys_res); colormap('gray'); title('Vol Img5Sys Estim?');
+imagesc(M1_img5_sys_res); colormap('gray'); title('Vol Img5Sys Estime');
 
 subplot(2,5,1);
-imagesc(M1_img1_dias_res); colormap('gray'); title('Vol Img1Dias Estim?');
+imagesc(M1_img1_dias_res); colormap('gray'); title('Vol Img1Dias Estime');
 
 subplot(2,5,2);
-imagesc(M1_img2_dias_res); colormap('gray'); title('Vol Img2Dias Estim?');
+imagesc(M1_img2_dias_res); colormap('gray'); title('Vol Img2Dias Estime');
 
 subplot(2,5,3);
-imagesc(M1_img3_dias_res); colormap('gray'); title('Vol Img3Dias Estim?');
+imagesc(M1_img3_dias_res); colormap('gray'); title('Vol Img3Dias Estime');
 
 subplot(2,5,4);
-imagesc(M1_img4_dias_res); colormap('gray'); title('Vol Img4Dias Estim?');
+imagesc(M1_img4_dias_res); colormap('gray'); title('Vol Img4Dias Estime');
 
 subplot(2,5,5);
-imagesc(M1_img5_dias_res); colormap('gray'); title('Vol Img5Dias?Estim?');
+imagesc(M1_img5_dias_res); colormap('gray'); title('Vol Img5Dias?Estime');
 
 
 %% Estimated volume
-fprintf('Results using mathematic morfology \n');
+fprintf('-----Results using mathematic morfology----- \n');
 fprintf('Estimated volume IMG 1 Dias: %g\n', sum(M1_img1_dias_res(:)));
 fprintf('Estimated volume IMG 2 Dias: %g\n', sum(M1_img2_dias_res(:)));
 fprintf('Estimated volume IMG 3 Dias: %g\n', sum(M1_img3_dias_res(:)));
@@ -185,7 +185,7 @@ fprintf('Estimated volume IMG 4 Sys: %g\n', sum(M1_img4_sys_res(:)));
 fprintf('Estimated volume IMG 5 Sys: %g\n', sum(M1_img5_sys_res(:)));
 
 %% Estimated ejected fraction
-fprintf('Results using mathematic morfology \n');
+fprintf('-----Results using mathematic morfology----- \n');
 fprintf('Estimated ejected fraction IMG 1: %g\n', (sum(M1_img1_dias_res(:)) - sum(M1_img1_sys_res(:)))/sum(M1_img1_dias_res(:)));
 fprintf('Estimated ejected fraction IMG 2: %g\n', (sum(M1_img2_dias_res(:)) - sum(M1_img2_sys_res(:)))/sum(M1_img2_dias_res(:)));
 fprintf('Estimated ejected fraction IMG 3: %g\n', (sum(M1_img3_dias_res(:)) - sum(M1_img3_sys_res(:)))/sum(M1_img3_dias_res(:)));

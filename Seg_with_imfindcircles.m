@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Methode 3: Segmentation  with imfindcircles
+%%% Methode 4: Segmentation  with imfindcircles
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % We use our function to find the left ventricle giving the radius we want,
@@ -38,37 +38,37 @@ M3_BW5_sys_res = PadToOriginal(M3_BW5_sys, idx1, idx2, originalSize);
 % We show the images at its original size
 figure;
 subplot(2,5,6);
-imagesc(M3_BW1_sys_res); colormap('gray'); title('Vol Img1Sys Estim?');
+imagesc(M3_BW1_sys_res); colormap('gray'); title('Vol Img1Sys Estimé');
 
 subplot(2,5,7);
-imagesc(M3_BW2_sys_res); colormap('gray'); title('Vol Img2Sys Estim?');
+imagesc(M3_BW2_sys_res); colormap('gray'); title('Vol Img2Sys Estimé');
 
 subplot(2,5,8);
-imagesc(M3_BW3_sys_res); colormap('gray'); title('Vol Img3Sys Estim?');
+imagesc(M3_BW3_sys_res); colormap('gray'); title('Vol Img3Sys Estimé');
 
 subplot(2,5,9);
-imagesc(M3_BW4_sys_res); colormap('gray'); title('Vol Img4Sys Estim?');
+imagesc(M3_BW4_sys_res); colormap('gray'); title('Vol Img4Sys Estimé');
 
 subplot(2,5,10);
-imagesc(M3_BW5_sys_res); colormap('gray'); title('Vol Img5Sys Estim?');
+imagesc(M3_BW5_sys_res); colormap('gray'); title('Vol Img5Sys Estimé');
 
 subplot(2,5,1);
-imagesc(M3_BW1_dias_res); colormap('gray'); title('Vol Img1Dias Estim?');
+imagesc(M3_BW1_dias_res); colormap('gray'); title('Vol Img1Dias Estimé');
 
 subplot(2,5,2);
-imagesc(M3_BW2_dias_res); colormap('gray'); title('Vol Img2Dias Estim?');
+imagesc(M3_BW2_dias_res); colormap('gray'); title('Vol Img2Dias Estimé');
 
 subplot(2,5,3);
-imagesc(M3_BW3_dias_res); colormap('gray'); title('Vol Img3Dias Estim?');
+imagesc(M3_BW3_dias_res); colormap('gray'); title('Vol Img3Dias Estimé');
 
 subplot(2,5,4);
-imagesc(M3_BW4_dias_res); colormap('gray'); title('Vol Img4Dias Estim?');
+imagesc(M3_BW4_dias_res); colormap('gray'); title('Vol Img4Dias Estimé');
 
 subplot(2,5,5);
-imagesc(M3_BW5_dias_res); colormap('gray'); title('Vol Img5Dias?Estim?');
+imagesc(M3_BW5_dias_res); colormap('gray'); title('Vol Img5Dias Estimé');
 
 %% Estimated volume
-fprintf('Results using circles detection (imfindcircles) \n');
+fprintf('-----Results using circles detection (imfindcircles)----- \n');
 fprintf('Estimated volume IMG 1 Dias: %g\n', sum(M3_BW1_dias_res(:)));
 fprintf('Estimated volume IMG 2 Dias: %g\n', sum(M3_BW2_dias_res(:)));
 fprintf('Estimated volume IMG 3 Dias: %g\n', sum(M3_BW3_dias_res(:)));
@@ -82,7 +82,7 @@ fprintf('Estimated volume IMG 5 Sys: %g\n', sum(M3_BW5_sys_res(:)));
 
 
 %% Estimated ejection fraction
-fprintf('Results using circles detection (imfindcircles) \n');
+fprintf('-----Results using circles detection (imfindcircles)----- \n');
 fprintf('Estimated ejection fraction IMG 1: %g\n', (sum(M3_BW1_dias_res(:)) - sum(M3_BW1_sys_res(:)))/sum(M3_BW1_dias_res(:)));
 fprintf('Estimated ejection fraction IMG 2: %g\n', (sum(M3_BW2_dias_res(:)) - sum(M3_BW2_sys_res(:)))/sum(M3_BW2_dias_res(:)));
 fprintf('Estimated ejection fraction IMG 3: %g\n', (sum(M3_BW3_dias_res(:)) - sum(M3_BW3_sys_res(:)))/sum(M3_BW3_dias_res(:)));

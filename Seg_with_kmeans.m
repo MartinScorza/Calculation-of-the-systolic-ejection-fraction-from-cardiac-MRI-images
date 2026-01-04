@@ -1,6 +1,6 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Methode 4: Segmentation with Kmeans (unsupervised)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Methode 3: Segmentation with Kmeans (unsupervised learning)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % We convert the images to uint8
 M4_1_dias = im2uint8(img1_dias_S);                 
@@ -91,7 +91,9 @@ M4mask3s = bestLVMaskFromLabels(M4_3_sys,  L3s);
 M4mask4s = bestLVMaskFromLabels(M4_4_sys,  L4s);
 M4mask5s = bestLVMaskFromLabels(M4_5_sys,  L5s);
 
-% We apply the dilatation operator to each ventricle with a disk form.
+% We apply the dilatation operator to each ventricle with a disk form to
+% avoid a sub segmentation
+
 M4mask2d = imdilate(M4mask2d,  strel('disk', 3));
 M4mask3d = imdilate(M4mask3d,  strel('disk', 3));
 M4mask4d = imdilate(M4mask4d,  strel('disk', 4));
@@ -139,38 +141,38 @@ M4_img5_sys_res = PadToOriginal(M4mask5s, idx1, idx2, originalSize);
 % --- Systole:
 figure;
 subplot(2,5,6);
-imagesc(M4_img1_sys_res); colormap('gray'); title('Vol Img1Sys Estimate');
+imagesc(M4_img1_sys_res); colormap('gray'); title('Vol Img1Sys Estimé');
 
 subplot(2,5,7);
-imagesc(M4_img2_sys_res); colormap('gray'); title('Vol Img2Sys Estimate');
+imagesc(M4_img2_sys_res); colormap('gray'); title('Vol Img2Sys Estimé');
 
 subplot(2,5,8);
-imagesc(M4_img3_sys_res); colormap('gray'); title('Vol Img3Sys Estimate');
+imagesc(M4_img3_sys_res); colormap('gray'); title('Vol Img3Sys Estimé');
 
 subplot(2,5,9);
-imagesc(M4_img4_sys_res); colormap('gray'); title('Vol Img4Sys Estimate');
+imagesc(M4_img4_sys_res); colormap('gray'); title('Vol Img4Sys Estimé');
 
 subplot(2,5,10);
-imagesc(M4_img5_sys_res); colormap('gray'); title('Vol Img5Sys Estimate');
+imagesc(M4_img5_sys_res); colormap('gray'); title('Vol Img5Sys Estimé');
 
 % --- Diastole ---
 subplot(2,5,1);
-imagesc(M4_img1_dias_res); colormap('gray'); title('Vol Img1Dias Estimate');
+imagesc(M4_img1_dias_res); colormap('gray'); title('Vol Img1Dias Estimé');
 
 subplot(2,5,2);
-imagesc(M4_img2_dias_res); colormap('gray'); title('Vol Img2Dias Estimate');
+imagesc(M4_img2_dias_res); colormap('gray'); title('Vol Img2Dias Estimé');
 
 subplot(2,5,3);
-imagesc(M4_img3_dias_res); colormap('gray'); title('Vol Img3Dias Estimate');
+imagesc(M4_img3_dias_res); colormap('gray'); title('Vol Img3Dias Estimé');
 
 subplot(2,5,4);
-imagesc(M4_img4_dias_res); colormap('gray'); title('Vol Img4Dias Estimate');
+imagesc(M4_img4_dias_res); colormap('gray'); title('Vol Img4Dias Estimé');
 
 subplot(2,5,5);
-imagesc(M4_img5_dias_res); colormap('gray'); title('Vol Img5Dias Estimate');
+imagesc(M4_img5_dias_res); colormap('gray'); title('Vol Img5Dias Estimé');
 
 %% Estimated volume
-fprintf('Results using Kmeans \n');
+fprintf('-----Results using Kmeans----- \n');
 fprintf('Estimated volume IMG 1 Dias: %g\n', sum(M4_img1_dias_res(:)));
 fprintf('Estimated volume IMG 2 Dias: %g\n', sum(M4_img2_dias_res(:)));
 fprintf('Estimated volume IMG 3 Dias: %g\n', sum(M4_img3_dias_res(:)));
@@ -183,7 +185,7 @@ fprintf('Estimated volume IMG 4 Sys: %g\n', sum(M4_img4_sys_res(:)));
 fprintf('Estimated volume IMG 5 Sys: %g\n', sum(M4_img5_sys_res(:)));
 
 %% Estimated ejection fraction
-fprintf('Results using Kmeans \n');
+fprintf('-----Results using Kmeans----- \n');
 fprintf('Ejected fraction (estimated) IMG 1: %g\n', (sum(M4_img1_dias_res(:)) - sum(M4_img1_sys_res(:)))/sum(M4_img1_dias_res(:)));
 fprintf('Ejected fraction (estimated) IMG 2: %g\n', (sum(M4_img2_dias_res(:)) - sum(M4_img2_sys_res(:)))/sum(M4_img2_dias_res(:)));
 fprintf('Ejected fraction (estimated) IMG 3: %g\n', (sum(M4_img3_dias_res(:)) - sum(M4_img3_sys_res(:)))/sum(M4_img3_dias_res(:)));
